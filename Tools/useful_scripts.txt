@@ -1,3 +1,5 @@
 # Find all the files that have a header file and convert it from upper to lower case.
 grep -srl ^#include . | xargs gsed -i.bak -e '/^#include.*/s/\(.*\)/\L\1/'
 
+# Find the files that include a header file.
+for header in `ls *.h`; do echo "Looking $header..."; grep -sr "$header" .; done
