@@ -3,3 +3,6 @@ grep -srl ^#include . | xargs gsed -i.bak -e '/^#include.*/s/\(.*\)/\L\1/'
 
 # Find the files that include a header file.
 for header in `ls *.h`; do echo "Looking $header..."; grep -sr "$header" .; done
+
+# Creating a graphviz-like export of header files.
+for header in `ls *.h`; do grep -osr "$header" .; done | sed 's/:/ -> /g' | uniq
