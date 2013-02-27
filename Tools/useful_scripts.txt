@@ -1,0 +1,3 @@
+# Find all the files that have a header file and convert it from upper to lower case.
+grep -srl ^#include . | xargs gsed -i.bak -e '/^#include.*/s/\(.*\)/\L\1/'
+
