@@ -1,26 +1,30 @@
 // ID_GLOB.H
 
+#include <stddef.h>
+#include <sys/types.h>
+#include <sys/time.h>
 
-#include <alloc.h>
+// #include <alloc.h>
 #include <ctype.h>
-#include <dos.h>
+// #include <dos.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <io.h>
-#include <mem.h>
-#include <process.h>
+// #include <io.h>
+// #include <mem.h>
+// #include <process.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys\stat.h>
-#include <values.h>
-#include <dir.h>
+#include <sys/stat.h>
+// #include <values.h>
+// #include <dir.h>
 #define __ID_GLOB__
 #include "version.h"
 
 //--------------------------------------------------------------------------
 
-extern	char		far signon;
+// extern	char		far signon;
+extern	char		signon;
 
 #define	introscn	signon
 

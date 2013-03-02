@@ -381,7 +381,8 @@ void MM_Startup (void)
 // get all available far conventional memory segments
 //
 	length=farcoreleft();
-	start = farheap = farmalloc(length);
+	// start = farheap = farmalloc(length);
+	start = farheap = malloc(length);
 	length -= 16-(FP_OFF(start)&15);
 	length -= SAVEFARHEAP;
 	seglength = length / 16;			// now in paragraphs
@@ -415,7 +416,8 @@ void MM_Shutdown (void)
   if (!mmstarted)
 	return;
 
-  farfree (farheap);
+  // farfree (farheap);
+  free (farheap);
   free (nearheap);
 //  MML_ShutdownXMS ();
 }
