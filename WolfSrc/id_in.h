@@ -164,7 +164,8 @@ extern	JoystickDef	JoyDefs[];
 extern	ControlType	Controls[MaxPlayers];
 
 extern	Demo		DemoMode;
-extern	byte _seg	*DemoBuffer;
+//extern	byte _seg	*DemoBuffer;
+extern	byte	*DemoBuffer;
 extern	word		DemoOffset,DemoSize;
 
 // Function prototypes

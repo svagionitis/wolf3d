@@ -104,7 +104,8 @@ typedef struct {
 		int allowed[4];
 		} CustomCtrls;
 
-extern CP_itemtype far MainMenu[],far NewEMenu[];
+//extern CP_itemtype far MainMenu[],far NewEMenu[];
+extern CP_itemtype MainMenu[], NewEMenu[];
 extern CP_iteminfo MainItems;
 
 //
@@ -113,10 +114,15 @@ extern CP_iteminfo MainItems;
 void SetupControlPanel(void);
 void CleanupControlPanel(void);
 
-void DrawMenu(CP_iteminfo *item_i,CP_itemtype far *items);
+//void DrawMenu(CP_iteminfo *item_i,CP_itemtype far *items);
+//int  HandleMenu(CP_iteminfo *item_i,
+//		CP_itemtype far *items,
+//		void (*routine)(int w));
+void DrawMenu(CP_iteminfo *item_i,CP_itemtype *items);
 int  HandleMenu(CP_iteminfo *item_i,
-		CP_itemtype far *items,
+		CP_itemtype *items,
 		void (*routine)(int w));
+
 void ClearMScreen(void);
 void DrawWindow(int x,int y,int w,int h,int wcolor);
 void DrawOutline(int x,int y,int w,int h,int color1,int color2);
@@ -126,17 +132,23 @@ void TicDelay(int count);
 void CacheLump(int lumpstart,int lumpend);
 void UnCacheLump(int lumpstart,int lumpend);
 void StartCPMusic(int song);
-int  Confirm(char far *string);
-void Message(char far *string);
+//int  Confirm(char far *string);
+//void Message(char far *string);
+int  Confirm(char *string);
+void Message(char *string);
+
 void CheckPause(void);
 void ShootSnd(void);
 void CheckSecretMissions(void);
 void BossKey(void);
 
-void DrawGun(CP_iteminfo *item_i,CP_itemtype far *items,int x,int *y,int which,int basey,void (*routine)(int w));
+//void DrawGun(CP_iteminfo *item_i,CP_itemtype far *items,int x,int *y,int which,int basey,void (*routine)(int w));
+void DrawGun(CP_iteminfo *item_i,CP_itemtype *items,int x,int *y,int which,int basey,void (*routine)(int w));
 void DrawHalfStep(int x,int y);
-void EraseGun(CP_iteminfo *item_i,CP_itemtype far *items,int x,int y,int which);
-void SetTextColor(CP_itemtype far *items,int hlight);
+//void EraseGun(CP_iteminfo *item_i,CP_itemtype far *items,int x,int y,int which);
+void EraseGun(CP_iteminfo *item_i,CP_itemtype *items,int x,int y,int which);
+//void SetTextColor(CP_itemtype far *items,int hlight);
+void SetTextColor(CP_itemtype *items,int hlight);
 void DrawMenuGun(CP_iteminfo *iteminfo);
 void DrawStripes(int y);
 

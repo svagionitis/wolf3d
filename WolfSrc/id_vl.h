@@ -159,7 +159,8 @@ void VL_ScreenToScreen (unsigned source, unsigned dest,int width, int height);
 void VL_MemToScreen (byte *source, int width, int height, int x, int y);
 void VL_MaskedToScreen (byte *source, int width, int height, int x, int y);
 
-void VL_DrawTile8String (char *str, char far *tile8ptr, int printx, int printy);
+//void VL_DrawTile8String (char *str, char far *tile8ptr, int printx, int printy);
+void VL_DrawTile8String (char *str, char *tile8ptr, int printx, int printy);
 void VL_DrawLatch8String (char *str, unsigned tile8ptr, int printx, int printy);
 void VL_SizeTile8String (char *str, int *width, int *height);
 void VL_DrawPropString (char *str, unsigned tile8ptr, int printx, int printy);

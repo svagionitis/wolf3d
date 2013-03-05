@@ -13,13 +13,17 @@
 =============================================================================
 */
 
-t_compscale far *scaledirectory[MAXSCALEHEIGHT+1];
+//t_compscale far *scaledirectory[MAXSCALEHEIGHT+1];
+t_compscale *scaledirectory[MAXSCALEHEIGHT+1];
 long			fullscalefarcall[MAXSCALEHEIGHT+1];
 
 int			maxscale,maxscaleshl2;
 
-byte far	*scalermemory;
-byte _seg	*endscalermemory;
+//byte far	*scalermemory;
+//byte _seg	*endscalermemory;
+byte *scalermemory;
+byte *endscalermemory;
+
 long		freescalermemory;
 
 
@@ -31,7 +35,8 @@ long		freescalermemory;
 =============================================================================
 */
 
-unsigned BuildCompScale (int height, byte far *code);
+//unsigned BuildCompScale (int height, byte far *code);
+unsigned BuildCompScale (int height, byte *code);
 
 int			stepbytwo;
 
@@ -45,7 +50,8 @@ int			stepbytwo;
 ==============
 */
 
-void far BadScale (void)
+//void far BadScale (void)
+void BadScale (void)
 {
 	Quit ("BadScale called!");
 }
@@ -62,7 +68,8 @@ void far BadScale (void)
 long SetupScaling (int maxscaleheight)
 {
 	int		i,x,y;
-	byte	far *dest;
+//	byte	far *dest;
+	byte	*dest;
 	unsigned	seg,ofs;
 	long	size;
 
@@ -85,11 +92,13 @@ long SetupScaling (int maxscaleheight)
 		ofs = (FP_OFF(dest)+15)&~15;
 		dest = MK_FP(seg+ofs/16,0);
 
-		scaledirectory[i] = (t_compscale far *)dest;
+//		scaledirectory[i] = (t_compscale far *)dest;
+		scaledirectory[i] = (t_compscale *)dest;
 		size = BuildCompScale (i*2,dest);
 		dest += size;
 
-		if ((byte huge *)dest-(byte huge *)scalermemory > MAXSCALERMEMORY)
+//		if ((byte huge *)dest-(byte huge *)scalermemory > MAXSCALERMEMORY)
+		if ((byte *)dest-(byte *)scalermemory > MAXSCALERMEMORY)
 			Quit ("Compiled scalars exceeded allocated space!");
 
 		if (i>=stepbytwo)
