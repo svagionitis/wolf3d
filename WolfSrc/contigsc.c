@@ -131,8 +131,10 @@ long SetupScaling (int maxscaleheight)
 
 	seg = FP_SEG(dest);
 	ofs = (FP_OFF(dest)+15)&~15;
-	endscalermemory = (void _seg *)(seg+ofs/16);
-	size = (byte huge *)dest-(byte huge *)scalermemory;
+//	endscalermemory = (void _seg *)(seg+ofs/16);
+//	size = (byte huge *)dest-(byte huge *)scalermemory;
+	endscalermemory = (void *)(seg+ofs/16);
+	size = (byte *)dest-(byte *)scalermemory;
 	freescalermemory = MAXSCALERMEMORY-16-size;
 
 	return size;
@@ -160,16 +162,19 @@ long SetupScaling (int maxscaleheight)
 ========================
 */
 
-unsigned BuildCompScale (int height, byte far *code)
+//unsigned BuildCompScale (int height, byte far *code)
+unsigned BuildCompScale (int height, byte *code)
 {
-	t_compscale 	far *work;
+//	t_compscale 	far *work;
+	t_compscale 	*work;
 
 	int			i;
 	long		fix,step;
 	unsigned	src,totalscaled,totalsize;
 	int			startpix,endpix,toppix;
 
-	work = (t_compscale far *)code;
+//	work = (t_compscale far *)code;
+	work = (t_compscale *)code;
 
 	step = ((long)height<<16) / 64;
 	code = &work->code[0];
@@ -221,7 +226,8 @@ unsigned BuildCompScale (int height, byte far *code)
 			*code++ = 0x26;
 			*code++ = 0x88;
 			*code++ = 0x85;
-			*((unsigned far *)code)++ = startpix*SCREENBWIDE;
+//			*((unsigned far *)code)++ = startpix*SCREENBWIDE;
+			*((unsigned *)code)++ = startpix*SCREENBWIDE;
 		}
 
 	}
@@ -248,14 +254,16 @@ unsigned BuildCompScale (int height, byte far *code)
 */
 
 extern	int			slinex,slinewidth;
-extern	unsigned	far *linecmds;
+//extern	unsigned	far *linecmds;
+extern	unsigned	*linecmds;
 extern	long		linescale;
 extern	unsigned	maskword;
 
 byte	mask1,mask2,mask3;
 
 
-void near ScaleLine (void)
+//void near ScaleLine (void)
+void ScaleLine (void)
 {
 asm	mov	cx,WORD PTR [linescale+2]
 asm	mov	es,cx						// segment of scaler
@@ -429,11 +437,14 @@ static	long		longtemp;
 
 void ScaleShape (int xcenter, int shapenum, unsigned height)
 {
-	t_compshape	_seg *shape;
-	t_compscale far *comptable;
+//	t_compshape	_seg *shape;
+//	t_compscale far *comptable;
+	t_compshape	*shape;
+	t_compscale *comptable;
 	unsigned	scale,srcx,stopx,tempx;
 	int			t;
-	unsigned	far *cmdptr;
+//	unsigned	far *cmdptr;
+	unsigned	*cmdptr;
 	boolean		leftvis,rightvis;
 
 
