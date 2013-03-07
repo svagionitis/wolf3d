@@ -90,7 +90,8 @@ long SetupScaling (int maxscaleheight)
 	{
 		seg = FP_SEG(dest);
 		ofs = (FP_OFF(dest)+15)&~15;
-		dest = MK_FP(seg+ofs/16,0);
+//		dest = MK_FP(seg+ofs/16,0);
+		dest = (byte *)MK_FP(seg+ofs/16,0);
 
 //		scaledirectory[i] = (t_compscale far *)dest;
 		scaledirectory[i] = (t_compscale *)dest;
@@ -227,7 +228,7 @@ unsigned BuildCompScale (int height, byte *code)
 			*code++ = 0x88;
 			*code++ = 0x85;
 //			*((unsigned far *)code)++ = startpix*SCREENBWIDE;
-			*((unsigned *)code)++ = startpix*SCREENBWIDE;
+			*(unsigned *)code++ = startpix*SCREENBWIDE;
 		}
 
 	}
