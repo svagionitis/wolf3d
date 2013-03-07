@@ -706,7 +706,7 @@ typedef enum	{
 	gd_easy,
 	gd_medium,
 	gd_hard
-};
+}gd;
 
 //---------------
 //
