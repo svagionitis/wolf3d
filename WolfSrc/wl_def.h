@@ -55,6 +55,14 @@ TODO: Needs to be removed.
     #define FP_OFF(x) (uint16_t)((uint32_t)(x)) /* grab 16 least significant bits */
 #endif
 
+/* 
+See: https://github.com/vonj/snippets/blob/master/mk_fp.h
+TODO: To be removed.
+*/
+#if !defined(MK_FP)
+    #define MK_FP( seg, offset )  ((void *)(((unsigned long)(seg) << 16)|(unsigned)(offset)))
+#endif
+
 /*
 =============================================================================
 
