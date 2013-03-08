@@ -44,23 +44,25 @@
 #define LABS(x) 	((long)(x)>0?(x):-(x))
 
 /*
-See: http://stackoverflow.com/questions/7318958/alternative-of-fp-seg-and-fp-off-for-converting-pointer-to-linear-address
+See: http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/devel/c/dos.h
 TODO: Needs to be removed.
 */
 #if !defined(FP_SEG)
-    #define FP_SEG(x) (uint16_t)((uint32_t)(x) >> 16) /* grab 16 most significant bits */
+    #define FP_SEG(fp)        ( ( unsigned )( ( unsigned long )( fp ) >> 16 ) )
 #endif
 
 #if !defined(FP_OFF)
-    #define FP_OFF(x) (uint16_t)((uint32_t)(x)) /* grab 16 least significant bits */
+    #define FP_OFF(fp)        ( ( unsigned )( fp ) )
 #endif
 
 /* 
-See: https://github.com/vonj/snippets/blob/master/mk_fp.h
+See: http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/devel/c/dos.h
 TODO: To be removed.
 */
 #if !defined(MK_FP)
-    #define MK_FP( seg, offset )  ((void *)(((unsigned long)(seg) << 16)|(unsigned)(offset)))
+    #define MK_FP( seg, ofs ) ( ( void * )\
+                          ( ( ( unsigned long )( seg ) << 16 ) |\
+                          ( unsigned )( ofs ) ) )
 #endif
 
 /*
