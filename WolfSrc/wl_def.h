@@ -47,8 +47,13 @@
 See: http://stackoverflow.com/questions/7318958/alternative-of-fp-seg-and-fp-off-for-converting-pointer-to-linear-address
 TODO: Needs to be removed.
 */
-#define FP_SEG(x) (uint16_t)((uint32_t)(x) >> 16) /* grab 16 most significant bits */ 
-#define FP_OFF(x) (uint16_t)((uint32_t)(x)) /* grab 16 least significant bits */
+#if !defined(FP_SEG)
+    #define FP_SEG(x) (uint16_t)((uint32_t)(x) >> 16) /* grab 16 most significant bits */
+#endif
+
+#if !defined(FP_OFF)
+    #define FP_OFF(x) (uint16_t)((uint32_t)(x)) /* grab 16 least significant bits */
+#endif
 
 /*
 =============================================================================
