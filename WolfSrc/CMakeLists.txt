@@ -119,3 +119,5 @@ SET(TARGET_SRC
 ADD_EXECUTABLE(wolf3d ${TARGET_SRC}) 
 
 SET(CMAKE_C_FLAGS "-g -Wall -Wno-unknown-pragmas -DMAXSCALERMEMORY=1048576 -fasm-blocks")
+#Will work on linux
+#SET(CMAKE_C_FLAGS "-g -Wall -Wno-unknown-pragmas -DMAXSCALERMEMORY=1048576 -masm=intel -fasm-blocks")
