@@ -118,6 +118,10 @@ SET(TARGET_SRC
 
 ADD_EXECUTABLE(wolf3d ${TARGET_SRC}) 
 
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 SET(CMAKE_C_FLAGS "-g -Wall -Wno-unknown-pragmas -DMAXSCALERMEMORY=1048576 -fasm-blocks")
-#Will work on linux
-#SET(CMAKE_C_FLAGS "-g -Wall -Wno-unknown-pragmas -DMAXSCALERMEMORY=1048576 -masm=intel -fasm-blocks")
+ENDIF()
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+SET(CMAKE_C_FLAGS "-g -Wall -Wno-unknown-pragmas -DMAXSCALERMEMORY=1048576")
+ENDIF()
