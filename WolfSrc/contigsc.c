@@ -266,6 +266,7 @@ byte	mask1,mask2,mask3;
 //void near ScaleLine (void)
 void ScaleLine (void)
 {
+/*
 asm	mov	cx,WORD PTR [linescale+2]
 asm	mov	es,cx						// segment of scaler
 
@@ -407,7 +408,7 @@ asm	dec	di
 asm	mov	es,WORD PTR ss:[linescale+2] // segment of scaler
 asm	mov	BYTE PTR es:[bx],cl			// unpatch the RETF
 asm	jmp	scaletriple					// do the next segment
-
+*/
 }
 
 
